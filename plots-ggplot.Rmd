@@ -32,3 +32,65 @@ ci_np <- read_excel(here("data/ci_np.xlsx"))
 
 ```
 
+### Make my own first graph!
+
+We're going to make a line plot of year (x-variable) vs. visitors (y-variable) in ggplot:
+
+```{r line-graph, message=FALSE,warning=FALSE,echo=FALSE}
+
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_line()
+
+# update the geom to geom_point(), geom_col(), geom_area()
+
+```
+
+Make a base layer for my CI plots:
+
+```{r}
+gg_base <- ggplot(data = ci_np, aes(x = year, y = visitors))
+
+gg_base + geom_point()
+```
+
+### Now let's start customizing!
+
+- Line / point colors: color
+- Change line type: linetype
+- Change point style: pch
+- Change transparency: alpha
+
+```{r customize,echo=false}
+
+gg_base +
+  geom_line(
+    color = "purple",
+    linetype = "dashed"
+  )
+
+```
+
+Activity: create a ggplot scatterplot (geom_point) that has triangle symbols (hint: ?pch), of a non-default size, and that are an updated color
+
+```{r}
+
+gg_base +
+  geom_point(
+    pch = 2,
+    size = 4,
+    color = "green"
+  )
+
+```
+
+### Update graph aesthetics based on variables
+
+```{r}
+gg_base +
+  geom_point(
+    aes(size = visitors,
+        color = year),
+    pch = 5
+  )
+```
+
